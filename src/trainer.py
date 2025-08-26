@@ -116,7 +116,7 @@ class Trainer:
                 y_hats.append(logits)
 
         print(f'Loss: loss.item()')
-        print(f'Accuracy: {loss.item()}')
+        print(f'Accuracy: {accuracy_score(y_hats, y):.4f}')
         print(f'F1 score: {f1_score(y_hats, y, average="macro")}')
 
 
