@@ -85,7 +85,7 @@ class Trainer:
         # calculate the average loss for the epoch and return it
         self._model.train()
         loss = 0
-        for x, y in self._train_dl:
+        for x, y in tqdm(self._train_dl, desc="Training Batches"):
             if self._cuda:
                 loss += self.train_step(x.cuda(), y.cuda())
             else:
@@ -107,7 +107,7 @@ class Trainer:
         loss = 0
 
         with t.no_grad():
-            for x, y in self._val_test_dl:
+            for x, y in tqdm(self._val_test_dl, desc="Validation Batches"):
                 if self._cuda:
                     new_loss, logits = self.val_test_step(x.cuda(), y.cuda())
                 else:
@@ -135,6 +135,8 @@ class Trainer:
             # use the save_checkpoint function to save the model (can be restricted to epochs with improvement)
             # check whether early stopping should be performed using the early stopping criterion and stop if so
             # return the losses for both training and validation
+
+            print(f'---Epoch {epoch}---')
 
             train_losses.append(self.train_epoch())
 

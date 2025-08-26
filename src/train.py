@@ -18,8 +18,8 @@ train_df, val_df = train_test_split(df, test_size=0.2, random_state=42)
 train_ds = ChallengeDataset(train_df, mode='train')
 val_ds = ChallengeDataset(val_df, mode='val')
 
-train_dl = t.utils.data.DataLoader(train_ds, batch_size=64, shuffle=True)
-val_dl = t.utils.data.DataLoader(val_ds, batch_size=64, shuffle=True)
+train_dl = t.utils.data.DataLoader(train_ds, batch_size=32, shuffle=True)
+val_dl = t.utils.data.DataLoader(val_ds, batch_size=32, shuffle=True)
 
 # create an instance of our ResNet model
 model = DenseNetMultiLabel()
